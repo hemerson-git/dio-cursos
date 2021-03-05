@@ -5,7 +5,7 @@ Here is my clone of the Instagram Landing Page, which I did for the DIO course.
 
 ## How do It Look
 
-![Instagram Landing Page Clone Preview](./github/screen.jpg)
+![Instagram Landing Page Clone Preview](./.github/screen.jpg)
 
 ## What do Need to Run It?
 
