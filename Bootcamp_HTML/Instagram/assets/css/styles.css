@@ -1,3 +1,9 @@
+:root {
+  --white: #fff;
+  --bg-light: #f4f3f5;
+  --blue: #0095f6;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -12,8 +18,13 @@ textarea {
   text-decoration: none;
 }
 
+a {
+  font-weight: 600;
+  color: var(--blue);
+}
+
 body {
-  background-color: #f4f3f5;
+  background-color: var(--bg-light);
 }
 
 .container {
@@ -46,19 +57,37 @@ body {
 @media (min-width: 1200px) {
   .container {
     max-width: 1140px;
+    height: 100vh;
   }
 }
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+  align-items: center;
+
   width: 100%;
+  height: 100vh;
+  
 }
 
 .row section {
+  display: flex;
+  flex-direction: column;
+  
   overflow: hidden;
 
   flex: 1;
+}
+
+@media (max-width: 757.98px) {
+  .row section {
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
 }
 
 .row section img {
@@ -72,10 +101,14 @@ body {
   align-items: center;
   flex-direction: column;
 
-  background-color: white;
+  background-color: var(--white);
   padding: 32px 64px;
   margin-bottom: 16px;
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, .09);
+}
+
+.group .logo {
+  margin-bottom: 16px;
 }
 
 .img-profile {
@@ -89,8 +122,9 @@ body {
 }
 
 .instagram-login {
-  background-color: blue;
-  color: white;
+  text-align: center;
+  background-color: var(--blue);
+  color: var(--white);
   padding: 8px 12px;
   border-radius: 8px;
   text-decoration: none;
@@ -116,5 +150,15 @@ body {
 
 .get-the-app .store-container {
   display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 64px;
+}
+
+.get-the-app .store-container a {
   flex: 1;
+}
+
+.get-the-app .store-container a:first-child {
+  margin-right: 8px;
 }
