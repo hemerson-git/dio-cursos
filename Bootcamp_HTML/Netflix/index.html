@@ -1,12 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script src="./assets/js/scripts.js"></script>
+
+  <!-- Tiny Carousel -->
+  <script src="./assets/vendor/tiny-carousel/tiny-slider.js"></script>
+  <link rel="stylesheet" href="./assets/vendor/tiny-carousel/tiny-slider.css">
+
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+
   <title>Netflix</title>
 </head>
+
 <body>
-  
+  <header>
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <h2 class="logo">NETFLIX</h2>
+
+        <nav>
+          <a href="#" class="active">Início</a>
+          <a href="#">Séries</a>
+          <a href="#">Filmes</a>
+          <a href="#">Documentários</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="main-movie">
+      <div class="container-fluid">
+        <div class="row">
+          <img src="./assets/img/capa-ponto-cego.jpg" alt="Capa Filme Ponto Cego" class="movie-cover">
+          <div class="cover-gradient"></div>
+
+          <div class="movie-info">
+            <div class="container position-relative">
+              <div class="row">
+                <h3 class="movie-title">Ponto Cego</h3>
+
+                <p class="synopsis">
+                  Uma mulher misteriosa traz no corpo as pistas para solucionar um crime. Que segredos
+                  suas tatuagens podem revelar?
+                </p>
+
+                <div class="buttons">
+                  <button class="btn-watch">
+                    <i data-feather="play"></i>
+                    Assitir
+                  </button>
+
+                  <button class="btn-more-info">
+                    <i data-feather="alert-circle"></i>
+                    Mais Informações
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="popular-movies">
+      <div class="slider">
+
+        <img src="./assets/img/mini1.jpg" alt="" class="popular-movie">
+        <img src="./assets/img/mini2.jpg" alt="" class="popular-movie">
+        <img src="./assets/img/mini3.jpg" alt="" class="popular-movie">
+        <img src="./assets/img/mini4.jpg" alt="" class="popular-movie">
+        <img src="./assets/img/mini5.jpg" alt="" class="popular-movie">
+      </div>
+    </section>
+  </main>
 </body>
+
 </html>
