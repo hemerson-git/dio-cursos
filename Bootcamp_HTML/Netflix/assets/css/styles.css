@@ -261,3 +261,7 @@ header nav .active {
   border: none;
   color: var(--white);
 }
+
+.popular-movies #tns1-ow button svg {
+  height: 2.5rem;
+}
