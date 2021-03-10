@@ -245,23 +245,37 @@ header nav .active {
 }
 
 .popular-movies #tns1-ow .tns-controls {
-  background: linear-gradient(90deg, rgba(0, 0, 0, .5) 1%, transparent 50%, rgba(0, 0, 0, .5) 90%);
   position: absolute;
-  z-index: 3;
-  top: 50%;
+  top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .popular-movies #tns1-ow button {
-  background: transparent;
+  position: absolute;
   border: none;
   color: var(--white);
+  
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+}
+
+.popular-movies #tns1-ow button[data-controls="prev"] {
+  background: linear-gradient(90deg, rgba(0, 0, 0, .8), transparent);
+  left: 0;
+}
+
+.popular-movies #tns1-ow button[data-controls="next"] {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, .8));
+  right: 0;
 }
 
 .popular-movies #tns1-ow button svg {
-  height: 2.5rem;
+  height: 4rem;
 }

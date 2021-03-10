@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  feather.replace();
-  
   let slider = tns({
     items: 1,
     touch: true,
@@ -20,4 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  feather.replace();
 });
