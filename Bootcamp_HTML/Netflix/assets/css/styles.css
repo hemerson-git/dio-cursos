@@ -109,13 +109,39 @@ body {
 
 header {
   padding: 16px;
-  background: linear-gradient(0, transparent, rgba(0, 0, 0, .8));
+  background-color: var(--black);
 
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 2400;
+}
+
+@media( max-width: 575.98px) {
+  header .container > .row:first-child {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.translucent {
+  animation: makeTranslucent .6s ease-in-out .3s forwards;
+}
+
+@keyframes makeTranslucent {
+  0% {
+    background: linear-gradient(0, transparent, rgba(0, 0, 0, 1));
+  }
+
+  45% {
+    background: linear-gradient(0, transparent, rgba(0, 0, 0, .84));
+  }
+  
+  100% {
+    background: linear-gradient(0, transparent, rgba(0, 0, 0, .8));
+  }
 }
 
 header .logo {
@@ -219,6 +245,18 @@ header nav .active {
 
 .main-movie .movie-info button:hover {
   filter: brightness(.8);
+}
+
+@media (max-width:575.98px) {
+  .main-movie .movie-info .buttons {
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .main-movie .movie-info button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
 
 .main-movie .movie-info button svg {
