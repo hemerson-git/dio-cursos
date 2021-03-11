@@ -2,8 +2,8 @@ Here is my clone of the Netflix Home Page, which I did for the DIO course.
 
 ## How do It Look
 
-![Netflix Home Page Clone Preview](./.github/screen.jpg)
-![Netflix Home Page Clone Preview mobile](./.github/screen_mobile.png)
+<img style="max-width: 80%" src="./.github/screen.jpg" alt="Netflix Home Page Clone Preview"/>
+<img style="max-width: 20%" src="./.github/screen_mobile.png" alt="Netflix Home Page Clone Preview mobile"/>
 
 ## What do Need to Run It?
 
