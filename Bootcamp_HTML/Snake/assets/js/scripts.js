@@ -6,6 +6,7 @@ let snake = [{
   y: 8 * box
 }]
 
+let size = snake.length;
 let food = {
   x: Math.floor(Math.random() * 15 + 1) * box,
   y: Math.floor(Math.random() * 15 + 1) * box
@@ -13,21 +14,40 @@ let food = {
 
 let direction = "right";
 
+let record = JSON.parse(localStorage.getItem('record')) ?? 0;
+
 function createBackground() {
-  context.fillStyle = 'lightgreen';
+  context.fillStyle = '#071108';
   context.fillRect(0, 0, 16 * box, 16 * box);
 }
 
 function createSnake() {
   for (let i = 0; i < snake.length; i++) {
-    context.fillStyle = 'green';
+    context.fillStyle = '#c7dbe6';
     context.fillRect(snake[i].x, snake[i].y, box, box);
   }
 }
 
 function createFood() {
-  context.fillStyle = 'red'
+  context.fillStyle = '#bfb1c1'
   context.fillRect(food.x, food.y, box, box)
+}
+
+function gameOver() {
+  for(let i = 1; i < snake.length; i++) {
+    if(snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+      if (size > record) {
+        localStorage.setItem('record', size - 1);
+      }
+
+      clearInterval(game);
+      alert('Game Over');
+    }
+  }
+}
+
+function restartGame() {
+  location.href = location.href;
 }
 
 document.addEventListener('keydown', chageDirection);
@@ -48,11 +68,21 @@ function chageDirection(e) {
   direction = newDirection;
 }
 
+function increasePotuation() {
+  let pointsSpan = document.querySelector('#points span');
+  size ++;
+
+  pointsSpan.textContent = size - 1;
+  
+}
+
 function gameStart() {
-  if(snake[0].x > 15 * box && direction === 'right') snake[0].x = 0;
-  if(snake[0].x < 0 && direction === 'left') snake[0].x = 15 * box;
-  if(snake[0].y > 15 * box && direction === 'down') snake[0].y = 0;
-  if(snake[0].y < 0 && direction === 'up') snake[0].y = 15 * box;
+  gameOver();
+  
+  if(snake[0].x > 15 * box) snake[0].x = 0;
+  if(snake[0].x < 0) snake[0].x = 15 * box;
+  if(snake[0].y > 15 * box) snake[0].y = 0;
+  if(snake[0].y < 0) snake[0].y = 15 * box;
   
   createBackground();
   createSnake();
@@ -77,8 +107,17 @@ function gameStart() {
     snakeY -= box;
   }
 
-  snake.pop();
+  
+  if (snakeX !== food.x || snakeY !== food.y) {
+    snake.pop();
+  } else {
+    food.x = Math.floor(Math.random() * 15 + 1) * box;
+    food.y = Math.floor(Math.random() * 15 + 1) * box;
+    increasePotuation();
+  }
 
+  // snake.pop();
+  
   let newHead = {
     x: snakeX,
     y: snakeY
@@ -88,3 +127,14 @@ function gameStart() {
 }
 
 let game = setInterval(gameStart, 100)
+
+document.addEventListener('DOMContentLoaded', () => {
+  let pointsSpan = document.querySelector('#points span');
+  let maxPontuationSpan = document.querySelector('#maxPontuation span');
+  let restartGameButton = document.querySelector('#restartGame');
+
+  restartGameButton.addEventListener('click', restartGame);
+
+  pointsSpan.textContent = size - 1;
+  maxPontuationSpan.textContent = record;
+})

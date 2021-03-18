@@ -1,0 +1,56 @@
+:root {
+  --primary: #c7dbe6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+canvas {
+  border-radius: 8px;
+}
+
+section h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 2.5rem;
+}
+
+aside {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 16px;
+  font-size: 1rem;
+  margin-top: 2.5rem;
+}
+
+aside div {
+  margin-bottom: 16px;
+}
+
+aside #restartGame {
+  background-color: var(--primary);
+  color: #665;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 8px;
+  margin-top: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
