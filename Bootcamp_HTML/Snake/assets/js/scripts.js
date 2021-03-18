@@ -1,10 +1,14 @@
 let canvas = document.querySelector('#snake');
 let context = canvas.getContext('2d');
 let box = 32;
-let snake = [];
-snake[0] = {
+let snake = [{
   x: 8 * box,
   y: 8 * box
+}]
+
+let food = {
+  x: Math.floor(Math.random() * 15 + 1) * box,
+  y: Math.floor(Math.random() * 15 + 1) * box
 }
 
 let direction = "right";
@@ -19,6 +23,11 @@ function createSnake() {
     context.fillStyle = 'green';
     context.fillRect(snake[i].x, snake[i].y, box, box);
   }
+}
+
+function createFood() {
+  context.fillStyle = 'red'
+  context.fillRect(food.x, food.y, box, box)
 }
 
 document.addEventListener('keydown', chageDirection);
@@ -47,6 +56,7 @@ function gameStart() {
   
   createBackground();
   createSnake();
+  createFood();
 
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
