@@ -34,4 +34,23 @@ people.forEach(person => {
 
 // Filter Array
 const men = people.filter(person => person.gender === gender.MAN);
-console.table(`Men List ${men}`)
+console.log(`Men List`, men);
+
+// Returns a new Array
+const peopleWithCourse = people.map(person => {
+  person.course = 'Introdução ao Javascript'
+  return person;
+});
+
+console.log(peopleWithCourse);
+
+// Turn the array into another type
+
+const totalAge = people.reduce((age, person) => {
+  age += person.age;
+  return age;
+}, 0);
+
+console.log(`Age total Sum:`, totalAge);
+
+
