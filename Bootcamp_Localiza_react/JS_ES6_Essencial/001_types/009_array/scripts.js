@@ -52,5 +52,3 @@ const totalAge = people.reduce((age, person) => {
 }, 0);
 
 console.log(`Age total Sum:`, totalAge);
-
-
