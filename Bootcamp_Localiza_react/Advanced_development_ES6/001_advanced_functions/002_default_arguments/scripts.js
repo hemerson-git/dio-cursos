@@ -25,3 +25,15 @@ function sum(a = 0, b = a) {
 }
 
 console.log(sum(5));
+
+// Using functions as the default parameter
+
+function randomNumber() {
+  return Math.floor(Math.random() * 10);
+}
+
+function sum2(a, b = randomNumber()) {
+  return a + b;
+}
+
+console.log(sum2(5))
