@@ -6,6 +6,10 @@ class Math {
   sub(num1, num2) {
     return num1 - num2;
   };
+
+  printsub(num1, num2) {
+    return num1 - num2;
+  };
 }
 
 module.exports = Math;
