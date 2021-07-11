@@ -1,0 +1,15 @@
+{
+  "name": "001_tests_tdd_bdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "mocha index."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^9.0.2"
+  }
+}
