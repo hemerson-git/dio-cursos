@@ -8,7 +8,6 @@ export const Wrapper = styled.main`
 export const Container = styled.aside`
   background-color: ${(props) => props.theme.colors.background};
   width: 360px;
-  max-width: 45%;
   height: 100vh;
   overflow-y: scroll;
 `;
