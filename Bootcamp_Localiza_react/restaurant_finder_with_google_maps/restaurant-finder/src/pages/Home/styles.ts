@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.main`
   display: flex;
   flex-direction: row;
-`
+`;
 
 export const Container = styled.aside`
   background-color: ${(props) => props.theme.colors.background};
@@ -38,7 +38,7 @@ export const Map = styled.div`
 
 export const CarouselTitle = styled.h1`
   font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.color };
+  color: ${(props) => props.theme.color};
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.7rem;
