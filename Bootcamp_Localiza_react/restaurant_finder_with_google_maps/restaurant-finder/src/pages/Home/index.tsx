@@ -4,10 +4,20 @@ import TextField, { Input } from "@material/react-text-field";
 import Slider from "react-slick";
 import { MdSearch } from "react-icons/md";
 
-import { Container, Search, Logo, Wrapper, Map, CarouselTitle } from "./styles";
+import ImageCard from "../../components/ImageCard";
+import RestaurantCardInfo from "../../components/RestaurantCardInfo";
+
+import {
+  Container,
+  Search,
+  Logo,
+  Wrapper,
+  Map,
+  CarouselTitle,
+  CarouselContainer,
+} from "./styles";
 import logo from "../../assets/logo.svg";
 import restaurant from "../../assets/restaurante-fake.png";
-import ImageCard from "../../components/ImageCard";
 
 function Home() {
   const [search, setSearch] = useState("");
@@ -55,20 +65,24 @@ function Home() {
               onChange={(e) => setSearch(e.currentTarget.value)}
             />
           </TextField>
+
+          <CarouselContainer>
+            <CarouselTitle>Na Sua Área</CarouselTitle>
+
+            <Slider {...settings}>
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              <ImageCard src={restaurant} title="Nome do Restaurante" />
+            </Slider>
+          </CarouselContainer>
         </Search>
 
-        <CarouselTitle>Na Sua Área</CarouselTitle>
-
-        <Slider {...settings}>
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-          <ImageCard src={restaurant} title="Nome do Restaurante" />
-        </Slider>
+        <RestaurantCardInfo />
       </Container>
 
       <Map></Map>

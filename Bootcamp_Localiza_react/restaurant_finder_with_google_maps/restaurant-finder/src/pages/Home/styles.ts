@@ -22,6 +22,10 @@ export const Search = styled.section`
   padding: 1rem;
 `;
 
+export const CarouselContainer = styled.div`
+  max-width: 100%;
+`;
+
 export const Logo = styled.img`
   width: 100%;
   max-width: 200px;
@@ -43,5 +47,4 @@ export const CarouselTitle = styled.h1`
   font-weight: bold;
   line-height: 1.7rem;
   margin: 1rem 0;
-  padding: 0 1rem;
 `;

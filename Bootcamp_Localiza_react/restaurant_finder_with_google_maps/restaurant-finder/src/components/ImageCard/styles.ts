@@ -17,5 +17,5 @@ export const Title = styled.span`
   top: 0.5rem;
   left: 0.5rem;
   font-size: 0.85rem;
-  color: #fff;
+  color: ${(props) => props.theme.colors.cardBackground};
 `;
