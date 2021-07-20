@@ -4,10 +4,10 @@ export const Restaurant = styled.div`
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 4px;
   padding: 1rem;
   background-color: ${(props) => props.theme.colors.cardBackground};
-  border-left: 0 solid transparent;
+  border-left: 5px solid transparent;
   transition: border 0.4s ease, background-color 0.4s ease-in-out;
 
   &:hover {
@@ -35,6 +35,12 @@ export const Address = styled.span`
   color: ${(props) => props.theme.colors.text};
   font-size: 1rem;
   line-height: 1.2rem;
+  margin-top: 12px;
 `;
 
-export const Title = styled.h1``;
+export const RestaurantImage = styled.img`
+  height: 100px;
+  width: 100px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+`;
