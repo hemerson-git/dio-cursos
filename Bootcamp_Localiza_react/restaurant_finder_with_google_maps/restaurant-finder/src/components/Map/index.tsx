@@ -1,11 +1,41 @@
+// @ts-nocheck
+
 import { GoogleApiWrapper, Map } from "google-maps-react";
+import { useState } from "react";
 
 export function MapContainer(props: any) {
   const { google } = props;
+  const [map, setMap] = useState(null);
 
-  function searchNearby() {}
+  function searchNearby(map, center) {
+    const service = new google.maps.places.PlacesService(map);
 
-  return <Map google={google} centerAroundCurrentLocation />;
+    const request = {
+      location: center,
+      radius: "20000",
+      type: ["restaurant"],
+    };
+
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesService.OK) {
+        console.log(results);
+      }
+    });
+  }
+
+  function onMapReady(_, map) {
+    setMap(map);
+    searchNearby(map, map.center);
+  }
+
+  return (
+    <Map
+      google={google}
+      centerAroundCurrentLocation
+      onReady={onMapReady}
+      onRecenter={onMapReady}
+    />
+  );
 }
 
 export default GoogleApiWrapper({
