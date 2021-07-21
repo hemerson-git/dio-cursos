@@ -7,13 +7,13 @@ import { MdSearch } from "react-icons/md";
 import ImageCard from "../../components/ImageCard";
 import RestaurantCardInfo from "../../components/RestaurantCardInfo";
 import Modal from "../../components/Modal";
+import Map from "../../components/Map";
 
 import {
   Container,
   Search,
   Logo,
   Wrapper,
-  Map,
   CarouselTitle,
   CarouselContainer,
 } from "./styles";
@@ -68,7 +68,7 @@ function Home() {
         <RestaurantCardInfo />
       </Container>
 
-      <Map></Map>
+      <Map />
 
       <Modal isOpen={isModalOpened} onClose={handleCloseModal}>
         <h1>Hello World</h1>
