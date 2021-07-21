@@ -6,6 +6,7 @@ import { MdSearch } from "react-icons/md";
 
 import ImageCard from "../../components/ImageCard";
 import RestaurantCardInfo from "../../components/RestaurantCardInfo";
+import Modal from "../../components/Modal";
 
 import {
   Container,
@@ -16,36 +17,18 @@ import {
   CarouselTitle,
   CarouselContainer,
 } from "./styles";
+
+import { settings } from "../../utils/slickSettings.js";
 import logo from "../../assets/logo.svg";
 import restaurant from "../../assets/restaurante-fake.png";
 
 function Home() {
   const [search, setSearch] = useState("");
+  const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 300,
-    centerMode: true,
-    centerPadding: "75px",
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    initialSlide: 0,
-    arrows: false,
-    margin: 4,
-    responsive: [
-      {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 1,
-          centerPadding: "70px",
-          slidesToScroll: 1,
-          centerMode: true,
-          infinite: true,
-        },
-      },
-    ],
-  };
+  function handleCloseModal() {
+    setIsModalOpened(false);
+  }
 
   return (
     <Wrapper>
@@ -86,6 +69,10 @@ function Home() {
       </Container>
 
       <Map></Map>
+
+      <Modal isOpen={isModalOpened} onClose={handleCloseModal}>
+        <h1>Hello World</h1>
+      </Modal>
     </Wrapper>
   );
 }
