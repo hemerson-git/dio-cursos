@@ -8,18 +8,37 @@ import {
   RestaurantName,
 } from "./styles";
 
-import restaurant from "../../assets/restaurante-fake.png";
+type RestaurantProps = {
+  name: string;
+  rating: number;
+  address: string;
+  formatted_address: string;
+  photos: [
+    {
+      getUrl: () => string;
+    }
+  ];
+};
 
-function RestaurantCardInfo() {
+type RestaurantCardProps = {
+  restaurant: RestaurantProps;
+};
+
+function RestaurantCardInfo({ restaurant }: RestaurantCardProps) {
   return (
     <Restaurant>
       <RestaurantMeta>
-        <RestaurantName>Nome do Restaurante</RestaurantName>
-        <ReactStars count={5} value={4} isHalf activeColor="#e7711c" />
-        <Address>Rua lorem ipsum, 30 - Dolor Sit Ame</Address>
+        <RestaurantName>{restaurant.name}</RestaurantName>
+        <ReactStars
+          count={5}
+          value={restaurant.rating}
+          isHalf
+          activeColor="#e7711c"
+        />
+        <Address>{restaurant.address || restaurant.formatted_address}</Address>
       </RestaurantMeta>
 
-      <RestaurantImage src={restaurant} />
+      <RestaurantImage src={restaurant?.photos[0].getUrl() || ""} />
     </Restaurant>
   );
 }

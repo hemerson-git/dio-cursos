@@ -1,5 +1,6 @@
-import { KeyboardEventHandler, useState } from "react";
+import { useState } from "react";
 
+import { useSelector } from "react-redux";
 import TextField, { Input } from "@material/react-text-field";
 import Slider from "react-slick";
 import { MdSearch } from "react-icons/md";
@@ -20,13 +21,36 @@ import {
 
 import { settings } from "../../utils/slickSettings.js";
 import logo from "../../assets/logo.svg";
-import restaurant from "../../assets/restaurante-fake.png";
+import restaurantPlaceholder from "../../assets/restaurante-fake.png";
 import { KeyboardEvent } from "react";
+
+type RestaurantProps = {
+  place_id: string;
+  name: string;
+  photo: string;
+  rating: number;
+  address: string;
+  formatted_address: string;
+  photos: [
+    {
+      getUrl: () => string;
+    }
+  ];
+};
+
+type RestaurantsProps = {
+  restaurants: RestaurantProps[];
+};
 
 function Home() {
   const [search, setSearch] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [query, setQuery] = useState("");
+
+  const { restaurants } = useSelector(
+    // @ts-ignore
+    (state) => state.restaurants
+  ) as RestaurantsProps;
 
   function handleCloseModal() {
     setIsModalOpened(false);
@@ -62,19 +86,20 @@ function Home() {
             <CarouselTitle>Na Sua Área</CarouselTitle>
 
             <Slider {...settings}>
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
-              <ImageCard src={restaurant} title="Nome do Restaurante" />
+              {restaurants.map((restaurant) => (
+                <ImageCard
+                  key={restaurant.place_id}
+                  src={restaurant?.photos[0].getUrl() || restaurantPlaceholder}
+                  title={restaurant.name}
+                />
+              ))}
             </Slider>
           </CarouselContainer>
         </Search>
 
-        <RestaurantCardInfo />
+        {restaurants.map((restaurant: RestaurantProps) => (
+          <RestaurantCardInfo restaurant={restaurant} />
+        ))}
       </Container>
 
       <Map query={query} />

@@ -2,23 +2,20 @@ export const settings = {
   dots: false,
   infinite: false,
   speed: 300,
-  centerMode: true,
-  centerPadding: "75px",
-  slidesToShow: 2,
-  slidesToScroll: 2,
+  centerPadding: "100px",
+  slidesToShow: 3,
+  slidesToScroll: 3,
   initialSlide: 0,
   arrows: false,
   margin: 4,
-  responsive: [
-    {
-      breakpoint: 767,
-      settings: {
-        slidesToShow: 1,
-        centerPadding: "70px",
-        slidesToScroll: 1,
-        centerMode: true,
-        infinite: true,
-      },
+  responsive: [{
+    breakpoint: 767,
+    settings: {
+      slidesToShow: 3,
+      centerPadding: "70px",
+      slidesToScroll: 3,
+      centerMode: false,
+      infinite: true,
     },
-  ],
+  }, ],
 };
