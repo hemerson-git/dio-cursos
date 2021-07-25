@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
 
 import TextField, { Input } from "@material/react-text-field";
 import Slider from "react-slick";
@@ -21,13 +21,21 @@ import {
 import { settings } from "../../utils/slickSettings.js";
 import logo from "../../assets/logo.svg";
 import restaurant from "../../assets/restaurante-fake.png";
+import { KeyboardEvent } from "react";
 
 function Home() {
   const [search, setSearch] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [query, setQuery] = useState("");
 
   function handleCloseModal() {
     setIsModalOpened(false);
+  }
+
+  function handleKeyPress(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      setQuery(search);
+    }
   }
 
   return (
@@ -46,6 +54,7 @@ function Home() {
               inputType="input"
               //@ts-ignore
               onChange={(e) => setSearch(e.currentTarget.value)}
+              onKeyPress={handleKeyPress}
             />
           </TextField>
 
@@ -68,7 +77,7 @@ function Home() {
         <RestaurantCardInfo />
       </Container>
 
-      <Map />
+      <Map query={query} />
 
       <Modal isOpen={isModalOpened} onClose={handleCloseModal}>
         <h1>Hello World</h1>
