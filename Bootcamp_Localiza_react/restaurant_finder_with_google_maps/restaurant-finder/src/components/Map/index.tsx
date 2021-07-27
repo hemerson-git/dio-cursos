@@ -11,7 +11,7 @@ export function MapContainer(props: any) {
   const dispatch = useDispatch();
   const { restaurants } = useSelector((state) => state.restaurants);
 
-  const { google, query } = props;
+  const { google, query, praceId } = props;
   const [map, setMap] = useState(null);
   const [lastQuery, setLastQuery] = useState("");
 
@@ -21,6 +21,33 @@ export function MapContainer(props: any) {
       searchByQuery(query);
     }
   }, [query, searchByQuery]);
+
+  useEffect(() => {
+    if (placeId) {
+      getRestaurantByID(placeId);
+    }
+  }, [placeID]);
+
+  function getRestaurantByID(placeId) {
+    const service = new google.maps.places.PlacesService(map);
+
+    const request = {
+      placeId,
+      fields: [
+        "name",
+        "opening_hours",
+        "formatted_address",
+        "formatted_phone_number",
+      ],
+    };
+
+    service.getDetails(request, (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(place);
+        dispatch(setRestaurant(place));
+      }
+    });
+  }
 
   function searchByQuery(query) {
     if (map && query !== lastQuery) {
@@ -70,6 +97,7 @@ export function MapContainer(props: any) {
       centerAroundCurrentLocation
       onReady={onMapReady}
       onRecenter={onMapReady}
+      {...props}
     >
       {restaurants.map((restaurant) => (
         <Marker

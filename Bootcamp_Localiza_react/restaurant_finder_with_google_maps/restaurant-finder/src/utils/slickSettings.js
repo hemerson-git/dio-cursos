@@ -8,6 +8,7 @@ export const settings = {
   initialSlide: 0,
   arrows: false,
   margin: 4,
+  autoPlay: true,
   responsive: [{
     breakpoint: 767,
     settings: {
