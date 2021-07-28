@@ -26,6 +26,7 @@ import logo from "../../assets/logo.svg";
 import restaurantPlaceholder from "../../assets/restaurante-fake.png";
 import { KeyboardEvent } from "react";
 import Loader from "../../components/Loader";
+import Skeleton from "../../components/Skeleton";
 
 type RestaurantProps = {
   place_id: string;
@@ -131,14 +132,25 @@ function Home() {
       <Map query={query} placeId={placeId} />
 
       <Modal isOpen={isModalOpened} onClose={handleCloseModal}>
-        <ModalTitle>{restaurantSelected?.name}</ModalTitle>
-        <ModalText>{restaurantSelected?.formatted_phone_number}</ModalText>
-        <ModalText>{restaurantSelected?.formatted_address}</ModalText>
-        <ModalText>
-          {restaurantSelected?.opening_hours.open_now
-            ? "Aberto Agora"
-            : "Fechado"}
-        </ModalText>
+        {restaurantSelected ? (
+          <>
+            <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+            <ModalText>{restaurantSelected?.formatted_phone_number}</ModalText>
+            <ModalText>{restaurantSelected?.formatted_address}</ModalText>
+            <ModalText>
+              {restaurantSelected?.opening_hours.open_now
+                ? "Aberto Agora"
+                : "Fechado"}
+            </ModalText>
+          </>
+        ) : (
+          <>
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+            <Skeleton width="10px" height="10px" />
+          </>
+        )}
       </Modal>
     </Wrapper>
   );
