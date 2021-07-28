@@ -11,7 +11,7 @@ export function MapContainer(props: any) {
   const dispatch = useDispatch();
   const { restaurants } = useSelector((state) => state.restaurants);
 
-  const { google, query, praceId } = props;
+  const { google, query, placeId } = props;
   const [map, setMap] = useState(null);
   const [lastQuery, setLastQuery] = useState("");
 
@@ -26,7 +26,7 @@ export function MapContainer(props: any) {
     if (placeId) {
       getRestaurantByID(placeId);
     }
-  }, [placeID]);
+  }, []);
 
   function getRestaurantByID(placeId) {
     const service = new google.maps.places.PlacesService(map);

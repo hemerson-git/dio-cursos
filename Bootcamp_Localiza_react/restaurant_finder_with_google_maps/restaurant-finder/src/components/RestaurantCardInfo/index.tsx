@@ -22,11 +22,12 @@ type RestaurantProps = {
 
 type RestaurantCardProps = {
   restaurant: RestaurantProps;
+  onClick: () => void;
 };
 
-function RestaurantCardInfo({ restaurant }: RestaurantCardProps) {
+function RestaurantCardInfo({ restaurant, onClick }: RestaurantCardProps) {
   return (
-    <Restaurant>
+    <Restaurant onClick={onClick}>
       <RestaurantMeta>
         <RestaurantName>{restaurant.name}</RestaurantName>
         <ReactStars

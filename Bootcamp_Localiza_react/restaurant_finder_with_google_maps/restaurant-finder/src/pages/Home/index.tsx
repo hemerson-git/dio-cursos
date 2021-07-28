@@ -17,6 +17,8 @@ import {
   Wrapper,
   CarouselTitle,
   CarouselContainer,
+  ModalTitle,
+  ModalText,
 } from "./styles";
 
 import { settings } from "../../utils/slickSettings.js";
@@ -31,6 +33,7 @@ type RestaurantProps = {
   rating: number;
   address: string;
   formatted_address: string;
+  formatted_phone_number: string;
   photos: [
     {
       getUrl: () => string;
@@ -40,14 +43,17 @@ type RestaurantProps = {
 
 type RestaurantsProps = {
   restaurants: RestaurantProps[];
+  restaurantSelected: RestaurantProps;
+  onClick: () => void;
 };
 
 function Home() {
   const [search, setSearch] = useState("");
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [placeId, setPlaceId] = useState("");
   const [query, setQuery] = useState("");
 
-  const { restaurants } = useSelector(
+  const { restaurants, restaurantSelected } = useSelector(
     // @ts-ignore
     (state) => state.restaurants
   ) as RestaurantsProps;
@@ -60,6 +66,11 @@ function Home() {
     if (event.key === "Enter") {
       setQuery(search);
     }
+  }
+
+  function handleOpenModal(placeId: string) {
+    setPlaceId(placeId);
+    setIsModalOpened(true);
   }
 
   return (
@@ -98,14 +109,19 @@ function Home() {
         </Search>
 
         {restaurants.map((restaurant: RestaurantProps) => (
-          <RestaurantCardInfo restaurant={restaurant} />
+          <RestaurantCardInfo
+            onClick={() => handleOpenModal(restaurant.place_id)}
+            restaurant={restaurant}
+          />
         ))}
       </Container>
 
-      <Map query={query} />
+      <Map query={query} placeId={placeId} />
 
       <Modal isOpen={isModalOpened} onClose={handleCloseModal}>
-        <h1>Hello World</h1>
+        <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+        <ModalText>{restaurantSelected?.formatted_phone_number}</ModalText>
+        <ModalText>{restaurantSelected?.formatted_address}</ModalText>
       </Modal>
     </Wrapper>
   );
