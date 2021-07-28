@@ -25,6 +25,7 @@ import { settings } from "../../utils/slickSettings.js";
 import logo from "../../assets/logo.svg";
 import restaurantPlaceholder from "../../assets/restaurante-fake.png";
 import { KeyboardEvent } from "react";
+import Loader from "../../components/Loader";
 
 type RestaurantProps = {
   place_id: string;
@@ -34,6 +35,10 @@ type RestaurantProps = {
   address: string;
   formatted_address: string;
   formatted_phone_number: string;
+  opening_hours: {
+    open_now: boolean;
+  };
+
   photos: [
     {
       getUrl: () => string;
@@ -92,20 +97,27 @@ function Home() {
               onKeyPress={handleKeyPress}
             />
           </TextField>
+          {restaurants.length ? (
+            <>
+              <CarouselContainer>
+                <CarouselTitle>Na Sua Área</CarouselTitle>
 
-          <CarouselContainer>
-            <CarouselTitle>Na Sua Área</CarouselTitle>
-
-            <Slider {...settings}>
-              {restaurants.map((restaurant) => (
-                <ImageCard
-                  key={restaurant.place_id}
-                  src={restaurant?.photos[0].getUrl() || restaurantPlaceholder}
-                  title={restaurant.name}
-                />
-              ))}
-            </Slider>
-          </CarouselContainer>
+                <Slider {...settings}>
+                  {restaurants.map((restaurant) => (
+                    <ImageCard
+                      key={restaurant.place_id}
+                      src={
+                        restaurant?.photos[0].getUrl() || restaurantPlaceholder
+                      }
+                      title={restaurant.name}
+                    />
+                  ))}
+                </Slider>
+              </CarouselContainer>
+            </>
+          ) : (
+            <Loader />
+          )}
         </Search>
 
         {restaurants.map((restaurant: RestaurantProps) => (
@@ -122,6 +134,11 @@ function Home() {
         <ModalTitle>{restaurantSelected?.name}</ModalTitle>
         <ModalText>{restaurantSelected?.formatted_phone_number}</ModalText>
         <ModalText>{restaurantSelected?.formatted_address}</ModalText>
+        <ModalText>
+          {restaurantSelected?.opening_hours.open_now
+            ? "Aberto Agora"
+            : "Fechado"}
+        </ModalText>
       </Modal>
     </Wrapper>
   );
