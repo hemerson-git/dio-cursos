@@ -20,9 +20,12 @@ function World({ values }) {
 
   function renderPost(post, index) {
     const { title, description, image, id } = post;
+    const isFirst = index === 0;
+    const spanValue = isFirst ? 24 : 12;
+
     return (
-      <Col span={24} md={12} key={`post-${index}`}>
-        <article onClick={openPost(id)}>
+      <Col span={spanValue} key={`post-${index}`}>
+        <article onClick={() => openPost(id)}>
           <p>
             <strong dangerouslySetInnerHTML={createMarkup(title)} />
           </p>

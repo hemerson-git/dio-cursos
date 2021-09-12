@@ -21,16 +21,16 @@ function Technology({ values }) {
   function renderPost(post, index) {
     const { title, description, image, id } = post;
     return (
-      <Col span={24} md={12} key={`post-${index}`}>
-        <article onClick={openPost(id)}>
-          <p>
-            <strong dangerouslySetInnerHTML={createMarkup(title)} />
-          </p>
-
+      <Col span={24} md={6} key={`post-${index}`}>
+        <article onClick={() => openPost(id)}>
           {image.url
             ? renderImg({ image, description })
             : renderDescription(description)}
         </article>
+
+        <p>
+          <strong dangerouslySetInnerHTML={createMarkup(title)} />
+        </p>
       </Col>
     );
   }

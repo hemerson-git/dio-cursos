@@ -28,9 +28,9 @@ app.get("/api/:subject", (req, res) => {
   return res.json(GROUP_NEWS[subject]);
 });
 
-app.use("api/:subject/:id", (req, res) => {
+app.use("/api/:subject/:id", (req, res) => {
   const { subject, id } = req.params;
-  const allNews = GROUP_NEWS[subject];
+  const allNews = GROUP_NEWS[subject]?.value;
   const news = allNews.filter((news) => news.id === id);
   return res.json(news);
 });

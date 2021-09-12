@@ -24,7 +24,7 @@ function Economy({ values }) {
     const { title, description, image, id } = post;
     return (
       <Col span={24} md={12} key={`post-${index}`}>
-        <article onClick={openPost(id)}>
+        <article onClick={() => openPost(id)}>
           <p>
             <strong dangerouslySetInnerHTML={createMarkup(title)} />
           </p>

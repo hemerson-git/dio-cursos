@@ -17,7 +17,7 @@ function Home() {
     (async () => {
       if (news.length === 0) {
         setLoading(true);
-        const { data } = await api.get("/api");
+        const { data } = await api.get("/");
         const { world, technology, economy } = data.GROUP_NEWS;
         setNews({
           world: world.value,
@@ -46,14 +46,14 @@ function Home() {
         <World values={news?.world} />
       </Col>
 
-      <Col span={24} md={16}>
+      <Col span={24} md={8}>
         <Title align="center" level={2}>
           Economy
         </Title>
         <Economy values={news?.economy} />
       </Col>
 
-      <Col span={24} md={16}>
+      <Col span={24}>
         <Title align="center" level={2}>
           Technology
         </Title>
