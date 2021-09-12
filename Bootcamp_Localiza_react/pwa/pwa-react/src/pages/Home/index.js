@@ -1,5 +1,10 @@
 import React, { memo, useEffect, useState } from "react";
-import { Typography } from "antd";
+import { Col, Row, Typography } from "antd";
+
+import Economy from "../../components/Economy";
+import Technology from "../../components/Technology";
+import World from "../../components/World";
+
 import api from "../../services/api";
 
 const { Title } = Typography;
@@ -9,16 +14,17 @@ function Home() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
-
     (async () => {
-      try {
+      if (news.length === 0) {
+        setLoading(true);
         const { data } = await api.get("/api");
-
-        if (!news.length) setNews(data.GROUP_NEWS);
-        console.log(news);
-      } catch (error) {
-        console.log(error);
+        const { world, technology, economy } = data.GROUP_NEWS;
+        setNews({
+          world: world.value,
+          technology: technology.value,
+          economy: economy.value,
+        });
+        setLoading(false);
       }
     })();
   }, [news]);
@@ -32,11 +38,28 @@ function Home() {
   }
 
   return (
-    <div>
-      <Title level={1} align="center">
-        Hello World
-      </Title>
-    </div>
+    <Row gutter={[16, 16]}>
+      <Col span={24} md={16}>
+        <Title align="center" level={2}>
+          World
+        </Title>
+        <World values={news?.world} />
+      </Col>
+
+      <Col span={24} md={16}>
+        <Title align="center" level={2}>
+          Economy
+        </Title>
+        <Economy values={news?.economy} />
+      </Col>
+
+      <Col span={24} md={16}>
+        <Title align="center" level={2}>
+          Technology
+        </Title>
+        <Technology values={news?.technology} />
+      </Col>
+    </Row>
   );
 }
 
