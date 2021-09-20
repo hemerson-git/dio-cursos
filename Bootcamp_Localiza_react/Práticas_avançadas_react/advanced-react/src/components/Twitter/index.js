@@ -1,41 +1,32 @@
-import React, { Component } from "react";
+import React, { memo, useEffect, useState } from "react";
 
-class Twitter extends Component {
-  state = {
-    tweet: "title",
-  };
+const areEqual = (prevProps, nextProps) => {
+  return prevProps.loading === nextProps.loading;
+};
 
-  componentDidMount() {
-    const { posts, loading } = this.props;
-    console.log(posts);
-    console.log("componentDidMount", loading);
-  }
+function Twitter({ posts, loading }) {
+  const [tweet, setTweet] = useState("title");
 
-  componentDidUpdate(prevProps) {
-    const { loading } = this.props;
-    if (this.props.loading !== prevProps.loading) {
-      console.log("componentDidUpdate", loading);
-    }
-  }
-
-  componentWillUnmount() {
-    console.log("componentWillUnmount: fui removido");
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.tweet !== nextState.tweet;
-  }
-
-  render() {
-    const { posts } = this.props;
+  useEffect(() => {
+    const message = loading ? "Loading" : "Updated";
     console.log(posts);
 
-    return (
-      <div>
-        <h1>Title</h1>
-      </div>
-    );
-  }
+    console.log(message, loading);
+
+    return () => {
+      console.log("I was removed");
+    };
+  }, [loading, posts]);
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return this.state.tweet !== nextState.tweet;
+  // }
+
+  return (
+    <div>
+      <h1>Title</h1>
+    </div>
+  );
 }
 
-export default Twitter;
+export default memo(Twitter, areEqual);
