@@ -8,6 +8,7 @@ export function AuthProvider({ children }) {
 
   function handleSetToken(userToken) {
     setToken(userToken);
+    console.log(userToken);
   }
 
   return (
