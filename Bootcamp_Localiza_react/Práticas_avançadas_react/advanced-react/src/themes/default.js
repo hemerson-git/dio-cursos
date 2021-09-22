@@ -1,28 +1,27 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
-export const theme = {
-  primary: {
-    foreground: '#efefef',
-    background: '#333'
-  },
+const ThemeContext = createContext({});
+export default ThemeContext;
 
-  secondary: {
-    foreground: "#333",
-    background: '#efefef'
-  }
-}
+export function ThemeProvider({ children }) {
+  const theme = {
+    primary: {
+      foreground: "#efefef",
+      background: "#333",
+    },
 
-export const ThemeContext = createContext(theme.secondary);
+    secondary: {
+      foreground: "#333",
+      background: "#efefef",
+    },
+  };
 
-export function ThemeProvider({children}) {
   return (
-    <ThemeContext.Provider value={theme.primary}>
-      {children}
-    </ThemeContext.Provider>
-  )
+    <ThemeContext.Provider value={{ theme }}>{children}</ThemeContext.Provider>
+  );
 }
 
 export function useThemeProvider() {
   const context = useContext(ThemeContext);
-  return (context);
+  return context;
 }

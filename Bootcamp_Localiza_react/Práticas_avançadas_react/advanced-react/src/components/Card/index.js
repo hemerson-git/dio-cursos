@@ -1,15 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useThemeProvider } from "../../themes/default";
 
 function Card() {
-  const theme = useThemeProvider();
+  const { theme } = useThemeProvider();
+  const [selectedTheme, setSelectedTheme] = useState(theme.primary);
 
-  useEffect(() => {
-    setTimeout(() => {}, 4000); // 4 Second
-  }, []);
+  function changeTheme() {
+    if (selectedTheme === theme.primary) {
+      setSelectedTheme(theme.secondary);
+      return;
+    }
+
+    setSelectedTheme(theme.primary);
+  }
 
   return (
-    <button style={{ color: theme.foreground, background: theme.background }}>
+    <button
+      style={{
+        color: selectedTheme.foreground,
+        background: selectedTheme.background,
+      }}
+      onClick={changeTheme}
+    >
       Card Button
     </button>
   );
