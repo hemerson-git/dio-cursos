@@ -1,21 +1,21 @@
-import React from "react";
-
-import Card from "./components/Card";
-import Form from "./components/Card/Form";
-
-import { ThemeProvider } from "./themes/default";
-import { AuthProvider } from "./contexts/authContext";
+import React, { Fragment } from "react";
 
 function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <main>
-          <Form />
-          <Card />
-        </main>
-      </ThemeProvider>
-    </AuthProvider>
+    <React.Fragment>
+      <div>React JS</div>
+      <div>ReactJS Avançado!!</div>
+    </React.Fragment>
+
+    // <Fragment>
+    //   <div>React JS</div>
+    //   <div>ReactJS Avançado!!</div>
+    // </Fragment>
+
+    // <>
+    //   <div>React JS</div>
+    //   <div>ReactJS Avançado!!</div>
+    // </>
   );
 }
 
