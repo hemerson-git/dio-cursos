@@ -1,46 +1,23 @@
-import { useEffect, useState } from "react";
-import Card from "./components/Card";
-import Twitter from "./components/Twitter";
-import { ThemeProvider } from "./themes/default";
+import React, { Fragment } from "react";
 
-function App() {
-  const [loading, setLoading] = useState(true);
-  const [active, setActive] = useState(true);
+const store = [{ type: "Roupa" }, { type: "Calçado" }, { type: "Camiseta" }];
 
-  useEffect(() => {
-    getLoading();
-  }, []);
-
-  const posts = [
-    {
-      title: "xpto",
-      description: "foo",
-    },
-
-    {
-      title: "xpta",
-      description: "bar",
-    },
-  ];
-
-  function getLoading() {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }
-
-  function handleRemoveComponent() {
-    setActive(false);
-  }
-
+function Column({ type }) {
   return (
-    <ThemeProvider>
-      {active && <Twitter posts={posts} loading={loading} />}
-      <Card />
-
-      <button onClick={handleRemoveComponent}>Remove Component</button>
-    </ThemeProvider>
+    <tr>
+      <td>{type.name.console}</td>
+    </tr>
   );
+}
+
+function App({ children }) {
+  const renderColumns = (element, key) => (
+    <Fragment key={`column-${key}}`}>
+      <Column type={element.type} />
+    </Fragment>
+  );
+
+  return store.map(renderColumns);
 }
 
 export default App;

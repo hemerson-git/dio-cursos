@@ -2,6 +2,8 @@ import { memo } from "react";
 import ShareIcon from "../../images/share.svg";
 import CopyIcon from "../../images/copy.svg";
 
+import "./styles.css";
+
 const navigatorHasShare = navigator.share;
 
 const URL = "http://localhost:3000";
@@ -30,7 +32,12 @@ function Action({ post, subject }) {
     return <img src={icon} alt="icon" onClick={action} />;
   }
 
-  return <button className="share">{renderActions()}</button>;
+  return (
+    <button className="share">
+      {renderActions()}
+      <span>{navigatorHasShare ? "Compartilhar" : "Copiar URL"}</span>
+    </button>
+  )
 }
 
 export default memo(Action);
