@@ -1,22 +1,23 @@
 import React, { Fragment } from "react";
 
-function App() {
+const store = [{ type: "Roupa" }, { type: "Calçado" }, { type: "Camiseta" }];
+
+function Column({ type }) {
   return (
-    <React.Fragment>
-      <div>React JS</div>
-      <div>ReactJS Avançado!!</div>
-    </React.Fragment>
-
-    // <Fragment>
-    //   <div>React JS</div>
-    //   <div>ReactJS Avançado!!</div>
-    // </Fragment>
-
-    // <>
-    //   <div>React JS</div>
-    //   <div>ReactJS Avançado!!</div>
-    // </>
+    <tr>
+      <td>{type.name.console}</td>
+    </tr>
   );
+}
+
+function App({ children }) {
+  const renderColumns = (element, key) => (
+    <Fragment key={`column-${key}}`}>
+      <Column type={element.type} />
+    </Fragment>
+  );
+
+  return store.map(renderColumns);
 }
 
 export default App;
