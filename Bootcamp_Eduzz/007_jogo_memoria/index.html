@@ -15,7 +15,17 @@
 <body>
   <main>
     <div class="score">
-      <span>0</span>
+      <div>
+        Score:
+        <span>0</span>
+      </div>
+
+      <div class="highest">
+        <small>
+          Highest
+          <span>0</span>
+        </small>
+      </div>
     </div>
 
     <div class="genius">
@@ -24,13 +34,28 @@
       <button class="red btn-color" value="3"></button>
       <button class="green btn-color" value="4"></button>
     </div>
-
-    <div class="menu">
-      <button id="btn-start">
-        Start game
-      </button>
-    </div>
   </main>
+
+  <section class="menu">
+    <div class="game-over-message d-none">
+      <p>Ops, Você perdeu!! 😢 </p>
+    </div>
+
+    <h1>Genius</h1>
+
+    <div class="score-container">
+      <div class="highest">
+        <small>
+          Highest
+          <span>0</span>
+        </small>
+      </div>
+    </div>
+
+    <button id="btn-start">
+      Start game
+    </button>
+  </section>
 </body>
 
 </html>
