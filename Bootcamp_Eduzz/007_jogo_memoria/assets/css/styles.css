@@ -4,6 +4,11 @@
   --blue: #2667FF;
   --yellow: #d3cb33;
   --dark: #1B1F3B;
+
+  --transparent-green: rgba(129, 202, 174, 0.7);
+  --transparent-red: rgba(185, 102, 101, 0.7);
+  --transparent-blue: rgba(143, 175, 250, 0.7);
+  --transparent-yellow: rgba(201, 196, 112, 0.7);
 }
 
 * {
@@ -19,6 +24,10 @@ html {
 button {
   cursor: pointer;
   border: none;
+}
+
+.d-none {
+  display: none !important;
 }
 
 /* Colors 
@@ -57,12 +66,23 @@ main {
   background-color: var(--dark);
 }
 
-.pontuation {
-  font-size: 2rem;
+.score {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  flex-direction: column;
+
+  background-color: var(--transparent-blue);
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  margin-bottom: 5rem;
+  margin-right: 15%;
+
+  padding: 8px 32px;
 }
 
-.pontuation span {
-  color: white;
+.score>span {
+  font-size: 2rem;
 }
 
 .genius {
@@ -77,6 +97,8 @@ main {
   border-radius: 50%;
   overflow: hidden;
   position: relative;
+
+  -webkit-box-reflect: below 4px linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, .4) 200%);
 }
 
 .genius::after,
@@ -113,18 +135,89 @@ main {
   height: 100px;
   display: inline;
   transition: filter .4s, box-shadow .5s;
+  position: relative;
+  overflow: hidden;
 }
 
-.genius .btn-color:hover,
+.genius .btn-color::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, .1));
+  filter: blur(3px);
+  top: 0;
+  left: 0;
+  transform: skew(45deg);
+  transition: left 500ms;
+}
+
+.genius .btn-color:first-child:hover,
 .genius .btn-color.lighter {
   filter: brightness(1.1);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3),
-    inset 0 0 20px rgba(255, 255, 255, .3),
-    inset 0 0 40px rgba(255, 255, 255, .3);
+  box-shadow: inset 0 0 10px var(--transparent-blue),
+    inset 0 0 20px var(--transparent-blue),
+    inset 0 0 40px rgba(255, 255, 255, .3),
+    0 0 20px var(--transparent-blue);
+}
+
+.genius .btn-color:nth-child(2):hover,
+.genius .btn-color.lighter {
+  filter: brightness(1.1);
+  box-shadow: inset 0 0 10px var(--transparent-yellow),
+    inset 0 0 20px var(--transparent-yellow),
+    inset 0 0 40px rgba(255, 255, 255, .3),
+    0 0 20px var(--transparent-yellow);
+}
+
+.genius .btn-color:nth-child(3):hover,
+.genius .btn-color.lighter {
+  filter: brightness(1.1);
+  box-shadow: inset 0 0 10px var(--transparent-red),
+    inset 0 0 20px var(--transparent-red),
+    inset 0 0 40px rgba(255, 255, 255, .3),
+    0 0 20px var(--transparent-red);
+}
+
+.genius .btn-color:nth-child(4):hover,
+.genius .btn-color.lighter {
+  filter: brightness(1.1);
+  box-shadow: inset 0 0 10px var(--transparent-green),
+    inset 0 0 20px var(--transparent-green),
+    inset 0 0 40px rgba(255, 255, 255, .3),
+    0 0 20px var(--transparent-green);
+}
+
+.genius .btn-color:hover::after {
+  left: 70%;
 }
 
 .menu {
-  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(16px);
+
+  position: fixed;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  border-radius: 16px;
+
+  color: var(--dark);
+  text-align: center;
+}
+
+.menu h1 {
+  margin-bottom: 32px;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 .menu #btn-start {
@@ -132,10 +225,23 @@ main {
   color: white;
   border: none;
   padding: 8px 24px;
-  border-radius: 4px;
+  font-size: 2rem;
+  border-radius: 8px;
   transition: filter 0.5s;
 }
 
 .menu #btn-start:hover {
   filter: brightness(1.4);
+}
+
+.score-container .highest {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.game-over-message {
+  color: var(--red);
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
