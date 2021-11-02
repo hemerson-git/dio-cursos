@@ -1,0 +1,141 @@
+:root {
+  --green: #77BFA3;
+  --red: #B80C09;
+  --blue: #2667FF;
+  --yellow: #d3cb33;
+  --dark: #1B1F3B;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+/* Colors 
+******************************/
+
+.blue {
+  background-color: var(--blue);
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+/* Genius
+******************************/
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  height: 100vh;
+  width: 100vw;
+  min-height: 400px;
+  min-width: 400px;
+
+  background-color: var(--dark);
+}
+
+.pontuation {
+  font-size: 2rem;
+}
+
+.pontuation span {
+  color: white;
+}
+
+.genius {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+
+  background-color: black;
+  border: 4px solid black;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.genius::after,
+.genius::before {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.genius::before {
+  content: "GENIUS";
+  background-color: gray;
+  color: white;
+  width: 45%;
+  height: 45%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.genius::after {
+  content: '';
+  width: 50%;
+  height: 50%;
+  background-color: black;
+  z-index: 2;
+}
+
+.genius .btn-color {
+  width: 100px;
+  height: 100px;
+  display: inline;
+  transition: filter .4s, box-shadow .5s;
+}
+
+.genius .btn-color:hover,
+.genius .btn-color.lighter {
+  filter: brightness(1.1);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .3),
+    inset 0 0 20px rgba(255, 255, 255, .3),
+    inset 0 0 40px rgba(255, 255, 255, .3);
+}
+
+.menu {
+  margin-top: 40px;
+}
+
+.menu #btn-start {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  transition: filter 0.5s;
+}
+
+.menu #btn-start:hover {
+  filter: brightness(1.4);
+}
