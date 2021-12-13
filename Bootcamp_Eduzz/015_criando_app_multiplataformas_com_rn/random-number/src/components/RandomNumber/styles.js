@@ -13,6 +13,14 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
 
+  main: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
+  },
+
+  footer: {},
+
   lastNumber: {
     fontSize: 100,
     fontWeight: "bold",
