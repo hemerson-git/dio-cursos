@@ -15,4 +15,16 @@ usersRoute.get(
   }
 );
 
+usersRoute.post("/users", (req: Request, res: Response, next: NextFunction) => {
+  const { name, email, password } = req.body;
+
+  const newUser = {
+    name,
+    email,
+    password,
+  };
+
+  res.status(201).json(newUser);
+});
+
 export default usersRoute;
