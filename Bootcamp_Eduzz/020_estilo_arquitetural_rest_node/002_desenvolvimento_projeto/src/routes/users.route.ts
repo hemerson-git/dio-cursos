@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
 
 const usersRoute = Router();
 
@@ -11,7 +12,7 @@ usersRoute.get(
   "/users/:uuid",
   (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
     const { uuid } = req.params;
-    res.status(200).json({ id: uuid });
+    res.status(StatusCodes.OK).json({ id: uuid });
   }
 );
 
@@ -24,7 +25,31 @@ usersRoute.post("/users", (req: Request, res: Response, next: NextFunction) => {
     password,
   };
 
-  res.status(201).json(newUser);
+  res.status(StatusCodes.CREATED).json(newUser);
 });
+
+usersRoute.put(
+  "/users/:uuid",
+  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    const { name } = req.body;
+    const { uuid } = req.params;
+
+    const updatedUser = {
+      uuid,
+      name,
+    };
+
+    res.status(StatusCodes.OK).json(updatedUser);
+  }
+);
+
+usersRoute.delete(
+  "/users/:uuid",
+  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    const { uuid } = req.params;
+
+    res.status(StatusCodes.OK).json({ uuid });
+  }
+);
 
 export default usersRoute;

@@ -1,10 +1,5 @@
-import express, {
-  Request,
-  Response,
-  NextFunction,
-  json,
-  urlencoded,
-} from "express";
+import express, { json, urlencoded } from "express";
+import statusRouter from "./routes/status.route";
 import usersRoute from "./routes/users.route";
 
 const PORT = 3000;
@@ -14,9 +9,6 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 app.use(usersRoute);
-
-app.get("/status", (req: Request, res: Response, next: NextFunction) => {
-  res.status(200).json({ message: "Tudo Funcionando" });
-});
+app.use(statusRouter);
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
