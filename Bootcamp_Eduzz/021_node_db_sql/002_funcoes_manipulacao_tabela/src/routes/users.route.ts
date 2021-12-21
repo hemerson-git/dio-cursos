@@ -27,11 +27,7 @@ usersRoute.get(
 
       res.status(StatusCodes.OK).json(user);
     } catch (error) {
-      if (error instanceof DatabaseError) {
-        res.sendStatus(StatusCodes.BAD_REQUEST);
-      }
-
-      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+      next(error);
     }
   }
 );
