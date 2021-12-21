@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
+import DatabaseError from "../models/errors/database.error.model";
 import userRepository from "../repositories/user.repository";
 
 const usersRoute = Router();
@@ -21,12 +22,16 @@ usersRoute.get(
       const user = await userRepository.findById(uuid);
 
       if (!user) {
-        res.status(400).json({ message: "User not found" });
+        res.sendStatus(StatusCodes.BAD_REQUEST);
       }
 
       res.status(StatusCodes.OK).json(user);
-    } catch ({ message, status }) {
-      res.status(500).json({ message, status });
+    } catch (error) {
+      if (error instanceof DatabaseError) {
+        res.sendStatus(StatusCodes.BAD_REQUEST);
+      }
+
+      res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
     }
   }
 );
@@ -49,25 +54,32 @@ usersRoute.post(
 
 usersRoute.put(
   "/users/:uuid",
-  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
-    const { name } = req.body;
+  async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+    const { username, password } = req.body;
     const { uuid } = req.params;
 
-    const updatedUser = {
+    const modifiedUser = {
       uuid,
-      name,
+      username,
+      password,
     };
 
-    res.status(StatusCodes.OK).json(updatedUser);
+    await userRepository.update(modifiedUser);
+
+    res
+      .status(StatusCodes.OK)
+      .json({ uuid: modifiedUser.uuid, username: modifiedUser.username });
   }
 );
 
 usersRoute.delete(
   "/users/:uuid",
-  (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+  async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
     const { uuid } = req.params;
 
-    res.status(StatusCodes.OK).json({ uuid });
+    await userRepository.remove(uuid);
+
+    res.status(StatusCodes.OK).send();
   }
 );
 
