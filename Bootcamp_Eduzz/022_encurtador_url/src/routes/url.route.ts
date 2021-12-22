@@ -6,6 +6,6 @@ const urlRouter = Router();
 const urlController = new URLController();
 
 urlRouter.post("/shorten", urlController.shorten);
-urlRouter.get("/redirect/:id", urlController.redirect);
+urlRouter.get("/:id", urlController.redirect);
 
 export default urlRouter;

@@ -1,25 +1,36 @@
 import { NextFunction, Request, Response } from "express";
 import shortid from "shortid";
+import { URLModel } from "../models/URL";
 
 class URLController {
   public async shorten(req: Request, resp: Response, next: NextFunction) {
     const { original_url } = req.body;
     const hash = shortid.generate();
+    const url = await URLModel.findOne({ original_url });
+
+    if (url) {
+      resp.json(url);
+      return;
+    }
+
     const { API_URL } = process.env;
 
-    const shortenURL = `${API_URL}/${hash}`;
-
-    resp.json({ shortenURL, original_url });
+    const shortURL = `${API_URL}/${hash}`;
+    const newURL = await URLModel.create({ hash, shortURL, original_url });
+    resp.json(newURL);
   }
 
   public async redirect(req: Request, resp: Response, next: NextFunction) {
-    const { hash } = req.params;
+    const { id: hash } = req.params;
 
-    const url = {
-      originUrl: "https://www.netflix.com",
-    };
+    const url = await URLModel.findOne({ hash });
 
-    resp.redirect(url.originUrl);
+    if (url && url.original_url) {
+      resp.redirect(url.original_url);
+      return;
+    }
+
+    resp.sendStatus(401);
   }
 }
 
