@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express, { json, urlencoded } from "express";
+import bearerAuthMiddleware from "./middlewares/bearer-auth.middleware";
 import errorHandler from "./middlewares/error-handler.middleware";
 import authorizationRoute from "./routes/auth.route";
 import statusRouter from "./routes/status.route";
@@ -12,7 +13,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Routers config
-app.use(usersRoute);
+app.use(bearerAuthMiddleware, usersRoute);
 app.use(statusRouter);
 app.use(authorizationRoute);
 
