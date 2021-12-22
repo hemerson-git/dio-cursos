@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express, { json, urlencoded } from "express";
-import bearerAuthMiddleware from "./middlewares/bearer-auth.middleware";
+import jwtAuthMiddleware from "./middlewares/jwt-auth.middleware";
 import errorHandler from "./middlewares/error-handler.middleware";
 import authorizationRoute from "./routes/auth.route";
 import statusRouter from "./routes/status.route";
@@ -13,9 +13,12 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Routers config
-app.use(bearerAuthMiddleware, usersRoute);
 app.use(statusRouter);
 app.use(authorizationRoute);
+
+// Authenticated Routes
+app.use(jwtAuthMiddleware);
+app.use(usersRoute);
 
 // Handlers configs
 app.use(errorHandler);
