@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response, Router } from "express";
-import JWT from "jsonwebtoken";
+import JWT, { SignOptions } from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
 import basicAuthMiddleware from "../middlewares/basic-auth.middleware";
 import ForbiddenError from "../models/errors/forbidden.error.model";
 import jwtAuthMiddleware from "../middlewares/jwt-auth.middleware";
 
 const authorizationRoute = Router();
+const { SECRET_KEY } = process.env;
 
 authorizationRoute.post(
   "/token",
@@ -18,9 +19,14 @@ authorizationRoute.post(
     }
 
     try {
+      const tokenExpiration = "15m";
       const jwtPayload = { username: user.username };
-      const jwtOptions = { subject: user.uuid };
-      const secretKey = "my_secret_key";
+      const jwtOptions: SignOptions = {
+        subject: user.uuid,
+        expiresIn: tokenExpiration,
+      };
+
+      const secretKey = String(SECRET_KEY);
 
       const jwt = JWT.sign(jwtPayload, secretKey, jwtOptions);
 
