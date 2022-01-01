@@ -1,15 +1,8 @@
-const email = document.querySelector("#email") as HTMLInputElement;
-const password = document.querySelector("#password") as HTMLInputElement;
-const submitBtn = document.querySelector("#submit-button") as HTMLButtonElement;
-const form = document.querySelector("#form") as HTMLFormElement;
+function addToList<T>(array: any[], value: T) {
+  const newArray = array.map(() => value);
+  return newArray;
+}
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+const cList = addToList([1, 2, 3], 1);
 
-  const emailValue = email.value.trim();
-  const passValue = password.value.trim();
-
-  if (emailValue && passValue) {
-    form.submit();
-  }
-});
+console.log(cList);
