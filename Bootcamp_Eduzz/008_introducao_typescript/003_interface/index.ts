@@ -1,8 +1,17 @@
-function sum(num1: number, num2: number) {
-  const result = num1 + num2;
-  return result;
+interface IAnimal {
+  name: string;
+  type: "terrestre" | "aquatico";
+  makeSound: (sound: string) => void;
 }
 
-const total = sum(1, 7);
+interface IFelino extends IAnimal {
+  nightVision: boolean;
+}
 
-console.log(total);
+const animal: IAnimal = {
+  name: "Elephant",
+  type: "terrestre",
+  makeSound: (sound) => `${sound}dB`,
+};
+
+animal.makeSound("groar");
