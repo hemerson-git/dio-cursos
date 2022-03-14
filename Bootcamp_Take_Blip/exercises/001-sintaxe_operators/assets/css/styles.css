@@ -1,0 +1,80 @@
+:root {
+  --dark: #0F1108;
+  --text: #EEF0F2;
+  --primary: #480355;
+  --secondary: #255C99;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+}
+
+html,
+input,
+button {
+  font-family: sans-serif;
+}
+
+main {
+  background-color: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+main h1 {
+  display: block;
+  text-align: center;
+  padding-top: 1rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+main ul {
+  list-style: decimal;
+  margin: 0 32px 32px;
+}
+
+main form {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+main section {
+  padding: 0 16px;
+}
+
+main form input {
+  width: 100%;
+  padding: .5rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+main button {
+  max-width: 500px;
+  width: 100%;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  background-color: var(--primary);
+  border: none;
+  color: var(--text);
+  text-transform: uppercase;
+  transition: background-color .3s linear;
+}
+
+main button:hover {
+  background-color: var(--secondary);
+}
+
+main #result {
+  color: var(--secondary);
+  filter: brightness(2);
+  text-align: center;
+}
