@@ -1,0 +1,62 @@
+:root {
+  --primary: #3A015C;
+  --light: #FFFCF2;
+  --info: #1E96FC;
+  --dark: #11001C;
+  --info-light: #759fbc;
+  --info-shadow: rgba(30, 150, 252, .3);
+  --info-light-shadow: rgba(117, 159, 188, .8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+}
+
+html,
+button,
+input,
+textarea {
+  font-family: sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+main .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+
+  padding: 1rem;
+  color: var(--light);
+  background-color: var(--dark);
+  width: 100%;
+}
+
+main .content li {
+  margin-left: 2rem;
+}
+
+main .content h1 {
+  margin-bottom: 2rem;
+}
+
+main .content p {
+  margin-bottom: 1rem;
+}
+
+main .content li {
+  line-height: 1.5rem;
+}

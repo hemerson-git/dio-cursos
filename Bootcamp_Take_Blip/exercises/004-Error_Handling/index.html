@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Handling</title>
+
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script src="./assets/js/scripts.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <div class="content">
+      <h1>Error Validation by types</h1>
+
+      <p>
+        The target is to create a function that receive an array and return it again if its length
+        matches the number in the second parameter in the function, otherwise an error must to be thrown.
+      </p>
+
+      <ul>
+        <li>
+          Create a function that takes an array and a number.
+        </li>
+
+        <li>
+          Makes the following validations:
+
+          <ul>
+            <li>
+              If params not to be sent, throw an *ReferenceError*
+            </li>
+
+            <li>
+              If the Array is ot nof type "object", throw an error of type: TypeError.
+            </li>
+
+            <li>
+              If the number is not of type "number", throw an error of type: TypeError.
+            </li>
+
+            <li>
+              If the arrays length is not equals to the number sent to the function
+              throw a RangeError.
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          Use try...catch expression
+        </li>
+
+        <li>
+          Filter catch calls by each type of error by using
+          the instance of operator.
+        </li>
+      </ul>
+    </div>
+  </main>
+</body>
+
+</html>
