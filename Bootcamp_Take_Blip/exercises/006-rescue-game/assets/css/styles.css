@@ -1,0 +1,101 @@
+::root {
+  --title: #603A03;
+}
+
+@font-face {
+  font-family: 'anodetonoone';
+  src: url(../fonts/ANODETONOONE.TTF);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: 'anodetonoone', sans-serif;
+  color: var(--title);
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+
+  position: relative;
+
+  min-width: 100vw;
+  min-height: 100vh;
+  background: url(../img/fundo.jpg) no-repeat;
+  background-size: cover;
+}
+
+#game-background {
+  width: 950px;
+  height: 630px;
+  background-image: url(../img/fundo_game.jpg);
+  border-color: #FFF;
+  border-radius: 8px;
+  border-style: solid;
+}
+
+#player {
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 8px;
+  top: 179px;
+  background-image: url(../img/apache.png);
+
+}
+
+#enemy1 {
+  width: 256px;
+  height: 66px;
+  position: absolute;
+  left: 689px;
+  top: 253px;
+  background-image: url(../img/inimigo1.png);
+
+}
+
+#enemy2 {
+  width: 165px;
+  height: 70px;
+  position: absolute;
+  left: 775px;
+  top: 447px;
+  background-image: url(../img/inimigo2.png);
+}
+
+#friend {
+  width: 44px;
+  height: 51px;
+  position: absolute;
+  left: 10px;
+  top: 464px;
+  background-image: url(../img/amigo.png);
+}
+
+#start {
+  width: 350px;
+  height: 240px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, .6);
+  backdrop-filter: blur(20px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  text-align: center;
+  padding: 16px;
+
+}
