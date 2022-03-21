@@ -39,9 +39,38 @@ main {
   background-size: cover;
 }
 
+#start {
+  display: flex;
+  flex-direction: column;
+}
+
+#start p {
+  margin-bottom: 1.5rem;
+}
+
+#btn-start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid var(--title);
+  transition: color .3s linear, background-color .3s linear;
+}
+
+#btn-start:hover {
+  background-color: var(--title);
+  color: #FFF;
+  border: 1px solid #FFF;
+}
+
+
 #game-background {
   width: 950px;
   height: 630px;
+  position: relative;
   background-image: url(../img/fundo_game.jpg);
   border-color: #FFF;
   border-radius: 8px;
@@ -62,7 +91,7 @@ main {
   width: 256px;
   height: 66px;
   position: absolute;
-  left: 689px;
+  right: 32px;
   top: 253px;
   background-image: url(../img/inimigo1.png);
 
@@ -72,7 +101,7 @@ main {
   width: 165px;
   height: 70px;
   position: absolute;
-  left: 775px;
+  right: 16px;
   top: 447px;
   background-image: url(../img/inimigo2.png);
 }
