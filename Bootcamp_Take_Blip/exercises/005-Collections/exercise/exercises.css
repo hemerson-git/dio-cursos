@@ -1,0 +1,26 @@
+main h1 {
+  margin-bottom: 0.5rem;
+}
+
+.questions {
+  padding: 0 16px;
+  margin-top: 2rem;
+}
+
+.questions h2 {
+  margin-bottom: 1rem;
+}
+
+.questions ul span {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.questions li {
+  margin-left: 2rem;
+  margin-bottom: .3rem;
+}
+
+.questions div {
+  margin-bottom: 2rem;
+}
